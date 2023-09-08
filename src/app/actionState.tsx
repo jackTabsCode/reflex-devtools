@@ -21,7 +21,7 @@ export function ActionState(props: { state: {} }) {
 		<scrollingframe
 			AutomaticCanvasSize={Enum.AutomaticSize.XY}
 			BackgroundTransparency={1}
-			BorderSizePixel={0}
+			BorderColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.Border)}
 			ScrollBarImageColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ScrollBar)}
 			ScrollBarThickness={6}
 			Size={UDim2.fromScale(1, 1)}

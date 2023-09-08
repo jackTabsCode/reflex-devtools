@@ -21,7 +21,7 @@ export function App() {
 			<scrollingframe
 				AutomaticCanvasSize={Enum.AutomaticSize.Y}
 				BackgroundTransparency={1}
-				BorderSizePixel={0}
+				BorderColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.Border)}
 				CanvasSize={new UDim2()}
 				ScrollBarImageColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ScrollBar)}
 				ScrollBarThickness={6}

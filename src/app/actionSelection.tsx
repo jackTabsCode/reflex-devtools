@@ -10,11 +10,21 @@ export function ActionSelection(props: { action: Action; index: number; selected
 		"en-us"
 	)
 
+	const backgroundColor = settings().Studio.Theme.GetColor(
+		Enum.StudioStyleGuideColor[props.selected ? "DialogMainButton" : "DialogButton"]
+	)
+	const textColor = settings().Studio.Theme.GetColor(
+		Enum.StudioStyleGuideColor[props.selected ? "DialogMainButtonText" : "DialogButtonText"]
+	)
+	const subTextColor = settings().Studio.Theme.GetColor(
+		Enum.StudioStyleGuideColor[props.selected ? "DialogMainButtonText" : "SubText"]
+	)
+
 	return (
 		<textbutton
 			AutomaticSize={Enum.AutomaticSize.Y}
 			BackgroundColor3={settings().Studio.Theme.GetColor(
-				Enum.StudioStyleGuideColor[props.selected ? "DialogMainButton" : "DialogButton"]
+				Enum.StudioStyleGuideColor[props.selected ? "MainButton" : "Button"]
 			)}
 			BorderColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.DialogButtonBorder)}
 			Event={{ Activated: props.onSelected }}
@@ -26,11 +36,9 @@ export function ActionSelection(props: { action: Action; index: number; selected
 			<textlabel
 				AutomaticSize={Enum.AutomaticSize.XY}
 				BackgroundTransparency={1}
-				Font={Enum.Font.SourceSans}
-				Text={`(${props.index}) ${props.action.name}`}
-				TextColor3={settings().Studio.Theme.GetColor(
-					Enum.StudioStyleGuideColor[props.selected ? "DialogMainButtonText" : "DialogButtonText"]
-				)}
+				Font={Enum.Font.SourceSansSemibold}
+				Text={props.action.name}
+				TextColor3={textColor}
 				TextSize={16}
 				TextWrapped
 				TextXAlignment={Enum.TextXAlignment.Left}
@@ -41,9 +49,7 @@ export function ActionSelection(props: { action: Action; index: number; selected
 					BackgroundTransparency={1}
 					Font={Enum.Font.RobotoMono}
 					Text={inspectedArgs}
-					TextColor3={settings().Studio.Theme.GetColor(
-						Enum.StudioStyleGuideColor[props.selected ? "DialogMainButtonText" : "DialogButtonText"]
-					)}
+					TextColor3={textColor}
 					TextSize={16}
 					TextWrapped
 					TextXAlignment={Enum.TextXAlignment.Left}
@@ -53,12 +59,9 @@ export function ActionSelection(props: { action: Action; index: number; selected
 				AutomaticSize={Enum.AutomaticSize.XY}
 				BackgroundTransparency={1}
 				Font={Enum.Font.RobotoMono}
-				Text={formattedTimestamp}
-				TextColor3={settings().Studio.Theme.GetColor(
-					Enum.StudioStyleGuideColor[props.selected ? "DialogMainButtonText" : "DialogButtonText"]
-				)}
+				Text={`${formattedTimestamp} • #${props.index}`}
+				TextColor3={subTextColor}
 				TextSize={15}
-				TextTransparency={0.25}
 				TextWrapped
 				TextXAlignment={Enum.TextXAlignment.Left}
 			/>
