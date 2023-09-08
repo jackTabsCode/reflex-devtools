@@ -21,7 +21,7 @@ export function ActionSelection(props: { action: Action; index: number; selected
 			<textlabel
 				AutomaticSize={Enum.AutomaticSize.XY}
 				BackgroundTransparency={1}
-				Font={Enum.Font.Roboto}
+				Font={Enum.Font.SourceSans}
 				Text={`(${props.index}) ${props.action.name}`}
 				TextColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ButtonText)}
 				TextSize={16}
@@ -32,7 +32,7 @@ export function ActionSelection(props: { action: Action; index: number; selected
 				<textlabel
 					AutomaticSize={Enum.AutomaticSize.XY}
 					BackgroundTransparency={1}
-					Font={Enum.Font.RobotoMono}
+					Font={Enum.Font.SourceSansMono}
 					Text={inspectedArgs}
 					TextColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ButtonText)}
 					TextSize={16}
