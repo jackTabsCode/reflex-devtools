@@ -24,7 +24,7 @@ export function App() {
 	}, [selected, actions])
 
 	return (
-		<frame BackgroundTransparency={1} Size={UDim2.fromScale(1, 1)}>
+		<frame BackgroundTransparency={1} Size={UDim2.fromScale(1, 1)} key="main">
 			<scrollingframe
 				AutomaticCanvasSize={Enum.AutomaticSize.Y}
 				BackgroundTransparency={1}
@@ -33,6 +33,7 @@ export function App() {
 				ScrollBarImageColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ScrollBar)}
 				ScrollBarThickness={6}
 				Size={UDim2.fromScale(ACTIONS_WIDTH, 1)}
+				key="actions"
 			>
 				{actions.map((action, index) => (
 					<ActionSelection
@@ -48,12 +49,13 @@ export function App() {
 						selected={index === selected?.index}
 					/>
 				))}
-				<uilistlayout SortOrder={Enum.SortOrder.LayoutOrder} />
+				<uilistlayout SortOrder={Enum.SortOrder.LayoutOrder} key="layout" />
 			</scrollingframe>
 			<frame
 				BackgroundTransparency={1}
 				Position={UDim2.fromScale(ACTIONS_WIDTH, 0)}
 				Size={UDim2.fromScale(1 - ACTIONS_WIDTH, 1)}
+				key="state"
 			>
 				{selectedAction && <ActionState state={selectedAction.state} />}
 			</frame>

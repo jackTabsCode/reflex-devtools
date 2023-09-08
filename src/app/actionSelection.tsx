@@ -42,6 +42,7 @@ export function ActionSelection(props: { action: Action; index: number; selected
 				TextSize={16}
 				TextWrapped
 				TextXAlignment={Enum.TextXAlignment.Left}
+				key="name"
 			/>
 			{!props.action.args.isEmpty() && (
 				<textlabel
@@ -53,6 +54,7 @@ export function ActionSelection(props: { action: Action; index: number; selected
 					TextSize={16}
 					TextWrapped
 					TextXAlignment={Enum.TextXAlignment.Left}
+					key="args"
 				/>
 			)}
 			<textlabel
@@ -64,14 +66,16 @@ export function ActionSelection(props: { action: Action; index: number; selected
 				TextSize={15}
 				TextWrapped
 				TextXAlignment={Enum.TextXAlignment.Left}
+				key="index"
 			/>
 
-			<uilistlayout Padding={new UDim(0, 2)} />
+			<uilistlayout Padding={new UDim(0, 2)} key="layout" />
 			<uipadding
 				PaddingBottom={new UDim(0, 8)}
 				PaddingLeft={new UDim(0, 8)}
 				PaddingRight={new UDim(0, 8)}
 				PaddingTop={new UDim(0, 8)}
+				key="padding"
 			/>
 		</textbutton>
 	)
