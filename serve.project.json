@@ -1,0 +1,22 @@
+{
+	"name": "roblox-ts-plugin",
+	"globIgnorePaths": ["**/package.json", "**/tsconfig.json", "out/tsconfig.tsbuildinfo"],
+	"tree": {
+		"$className": "DataModel",
+		"PluginDebugService": {
+			"$className": "PluginDebugService",
+			"user_ReflexDevTools.rbxm": {
+				"$className": "Plugin",
+				"ReflexDevTools": {
+					"$path": "out",
+					"include": {
+						"$path": "include",
+						"node_modules": {
+							"$path": "node_modules/@rbxts"
+						}
+					}
+				}
+			}
+		}
+	}
+}

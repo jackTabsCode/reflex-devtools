@@ -1,0 +1,12 @@
+{
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"files.eol": "\n",
+	"prettier.configPath": ".prettierrc",
+	"eslint.run": "onType",
+	"eslint.format.enable": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true
+	},
+	"emmet.showAbbreviationSuggestions": false,
+	"emmet.excludeLanguages": ["markdown", "typescriptreact"]
+}

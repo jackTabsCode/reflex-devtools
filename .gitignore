@@ -1,0 +1,6 @@
+/node_modules
+/out
+/include
+*.tsbuildinfo
+plugin.rbxm
+.DS_Store
