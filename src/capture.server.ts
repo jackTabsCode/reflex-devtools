@@ -22,17 +22,26 @@ const guard = t.interface({
 	state: t.table
 })
 
+const clientGuard = t.intersection(
+	guard,
+	t.interface({
+		timestamp: t.number
+	})
+)
+
 if (RunService.IsServer()) {
 	event.OnServerEvent.Connect((player, payload) => {
 		if (!guard(payload)) throw "did not pass guard"
 
-		store.dispatched(payload)
-		event!.FireClient(player, payload)
+		const timestamp = DateTime.now().UnixTimestampMillis
+
+		store.dispatched(payload, timestamp)
+		event?.FireClient(player, { ...payload, timestamp })
 	})
 } else {
 	event.OnClientEvent.Connect(payload => {
-		if (!guard(payload)) throw "did not pass guard"
+		if (!clientGuard(payload)) throw "did not pass guard"
 
-		store.dispatched(payload)
+		store.dispatched(payload, payload.timestamp)
 	})
 }

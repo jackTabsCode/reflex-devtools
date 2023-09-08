@@ -5,6 +5,11 @@ import { Action } from "store/game"
 export function ActionSelection(props: { action: Action; index: number; selected: boolean; onSelected: () => void }) {
 	const inspectedArgs = useMemo(() => inspect(props.action.args), [props.action])
 
+	const formattedTimestamp = DateTime.fromUnixTimestampMillis(props.action.timestamp).FormatLocalTime(
+		"hh:mm:ss.SSS",
+		"en-us"
+	)
+
 	return (
 		<textbutton
 			AutomaticSize={Enum.AutomaticSize.Y}
@@ -40,6 +45,17 @@ export function ActionSelection(props: { action: Action; index: number; selected
 					TextXAlignment={Enum.TextXAlignment.Left}
 				/>
 			)}
+			<textlabel
+				AutomaticSize={Enum.AutomaticSize.XY}
+				BackgroundTransparency={1}
+				Font={Enum.Font.RobotoMono}
+				Text={formattedTimestamp}
+				TextColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ButtonText)}
+				TextSize={15}
+				TextTransparency={0.25}
+				TextWrapped
+				TextXAlignment={Enum.TextXAlignment.Left}
+			/>
 
 			<uilistlayout Padding={new UDim(0, 2)} />
 			<uipadding
