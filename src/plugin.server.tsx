@@ -6,8 +6,6 @@ import Roact from "@rbxts/roact"
 import { App } from "app"
 import { store } from "store"
 
-print("Running plugin!")
-
 const toolbar = plugin.CreateToolbar("Reflex DevTools")
 const button = toolbar.CreateButton(
 	"Open",

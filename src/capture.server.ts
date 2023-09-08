@@ -4,8 +4,6 @@ import { ReplicatedStorage, RunService } from "@rbxts/services"
 import { t } from "@rbxts/t"
 import { store } from "store"
 
-print("Running capture!")
-
 let event = ReplicatedStorage.FindFirstChild("REFLEX_DEVTOOLS") as RemoteEvent | undefined
 
 if (!event) {
