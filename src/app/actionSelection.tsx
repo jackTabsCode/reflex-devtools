@@ -32,7 +32,7 @@ export function ActionSelection(props: { action: Action; index: number; selected
 				<textlabel
 					AutomaticSize={Enum.AutomaticSize.XY}
 					BackgroundTransparency={1}
-					Font={Enum.Font.SourceSansMono}
+					Font={Enum.Font.RobotoMono}
 					Text={inspectedArgs}
 					TextColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ButtonText)}
 					TextSize={16}
