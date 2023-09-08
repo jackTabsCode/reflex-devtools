@@ -14,9 +14,9 @@ export function ActionSelection(props: { action: Action; index: number; selected
 		<textbutton
 			AutomaticSize={Enum.AutomaticSize.Y}
 			BackgroundColor3={settings().Studio.Theme.GetColor(
-				Enum.StudioStyleGuideColor[props.selected ? "MainButton" : "Button"]
+				Enum.StudioStyleGuideColor[props.selected ? "DialogMainButton" : "DialogButton"]
 			)}
-			BorderColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ButtonBorder)}
+			BorderColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.DialogButtonBorder)}
 			Event={{ Activated: props.onSelected }}
 			LayoutOrder={0 - props.index}
 			RichText
@@ -28,7 +28,9 @@ export function ActionSelection(props: { action: Action; index: number; selected
 				BackgroundTransparency={1}
 				Font={Enum.Font.SourceSans}
 				Text={`(${props.index}) ${props.action.name}`}
-				TextColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ButtonText)}
+				TextColor3={settings().Studio.Theme.GetColor(
+					Enum.StudioStyleGuideColor[props.selected ? "DialogMainButtonText" : "DialogButtonText"]
+				)}
 				TextSize={16}
 				TextWrapped
 				TextXAlignment={Enum.TextXAlignment.Left}
@@ -39,7 +41,9 @@ export function ActionSelection(props: { action: Action; index: number; selected
 					BackgroundTransparency={1}
 					Font={Enum.Font.RobotoMono}
 					Text={inspectedArgs}
-					TextColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ButtonText)}
+					TextColor3={settings().Studio.Theme.GetColor(
+						Enum.StudioStyleGuideColor[props.selected ? "DialogMainButtonText" : "DialogButtonText"]
+					)}
 					TextSize={16}
 					TextWrapped
 					TextXAlignment={Enum.TextXAlignment.Left}
@@ -50,7 +54,9 @@ export function ActionSelection(props: { action: Action; index: number; selected
 				BackgroundTransparency={1}
 				Font={Enum.Font.RobotoMono}
 				Text={formattedTimestamp}
-				TextColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ButtonText)}
+				TextColor3={settings().Studio.Theme.GetColor(
+					Enum.StudioStyleGuideColor[props.selected ? "DialogMainButtonText" : "DialogButtonText"]
+				)}
 				TextSize={15}
 				TextTransparency={0.25}
 				TextWrapped
