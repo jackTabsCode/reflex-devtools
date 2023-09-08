@@ -1,4 +1,4 @@
-import Roact from "@rbxts/roact"
+import Roact, { useEffect } from "@rbxts/roact"
 import { useRootProducer, useRootSelector } from "store"
 import Highlighter from "vendor/highlighter"
 import { ActionSelection } from "./actionSelection"
@@ -12,9 +12,16 @@ export function App() {
 	const store = useRootProducer()
 
 	const actions = useRootSelector(state => state.game.actions)
-	const selectedIndex = useRootSelector(state => state.widget.selectedIndex)
+	const selected = useRootSelector(state => state.widget.selected)
 
-	const selectedAction = selectedIndex !== undefined ? actions[selectedIndex] : undefined
+	const selectedAction = selected !== undefined ? actions[selected.index] : undefined
+
+	useEffect(() => {
+		const last = actions.size() - 1
+		if ((selected && !selected.manual && selected.index !== last) || !selected) {
+			store.selectedAction(last, false)
+		}
+	}, [selected, actions])
 
 	return (
 		<frame BackgroundTransparency={1} Size={UDim2.fromScale(1, 1)}>
@@ -32,8 +39,13 @@ export function App() {
 						action={action}
 						index={index}
 						key={index}
-						onSelected={() => store.selectedAction(index)}
-						selected={index === selectedIndex}
+						onSelected={() => {
+							const isSelected = selected?.index === index
+							if (!isSelected) {
+								store.selectedAction(index, true)
+							} else store.deselectedAction()
+						}}
+						selected={index === selected?.index}
 					/>
 				))}
 				<uilistlayout SortOrder={Enum.SortOrder.LayoutOrder} />

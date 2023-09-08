@@ -4,7 +4,10 @@ import { createProducer } from "@rbxts/reflex"
 
 export interface Widget {
 	open: boolean
-	selectedIndex?: number
+	selected?: {
+		index: number
+		manual: boolean
+	}
 }
 
 const initialState: Widget = {
@@ -18,10 +21,19 @@ export const widget = createProducer(initialState, {
 			open: open ?? !state.open
 		}
 	},
-	selectedAction: (state, index?: number) => {
+	selectedAction: (state, index: number, manual: boolean) => {
 		return {
 			...state,
-			selectedIndex: index
+			selected: {
+				index,
+				manual
+			}
+		}
+	},
+	deselectedAction: state => {
+		return {
+			...state,
+			selected: undefined
 		}
 	}
 })
