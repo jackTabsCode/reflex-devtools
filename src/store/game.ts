@@ -2,17 +2,23 @@
 
 import { createProducer } from "@rbxts/reflex"
 
+export interface Action {
+	name: string
+	args: unknown[]
+	state: {}
+}
+
 export interface Game {
-	gameState: {}
+	actions: Action[]
 }
 
 const initialState: Game = {
-	gameState: {}
+	actions: []
 }
 
 export const _game = createProducer(initialState, {
-	update: (state, gameState: {}) => ({
+	dispatched: (state, action: Action) => ({
 		...state,
-		gameState
+		actions: [...state.actions, action]
 	})
 })

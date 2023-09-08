@@ -1,15 +1,8 @@
 import inspect from "@rbxts/inspect"
 import Roact, { useEffect, useRef } from "@rbxts/roact"
-import { useRootSelector } from "store"
 import Highlighter from "vendor/highlighter"
 
-Highlighter.matchStudioSettings()
-
-export function App() {
-	const gameState = useRootSelector(state => state.game.gameState)
-
-	const inspected = inspect(gameState)
-
+export function ActionState(props: { state: {} }) {
 	const label = useRef<TextLabel>()
 
 	useEffect(() => {
@@ -22,12 +15,15 @@ export function App() {
 		Highlighter.highlight({ textObject: ref })
 	}, [])
 
+	const inspected = inspect(props.state)
+
 	return (
 		<scrollingframe
 			AutomaticCanvasSize={Enum.AutomaticSize.XY}
 			BackgroundTransparency={1}
 			BorderSizePixel={0}
-			ScrollBarThickness={4}
+			ScrollBarImageColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ScrollBar)}
+			ScrollBarThickness={6}
 			Size={UDim2.fromScale(1, 1)}
 		>
 			<textlabel

@@ -26,13 +26,13 @@ if (RunService.IsServer()) {
 	event.OnServerEvent.Connect((player, payload) => {
 		if (!guard(payload)) throw "did not pass guard"
 
-		store.update(payload.state)
+		store.dispatched(payload)
 		event!.FireClient(player, payload)
 	})
 } else {
 	event.OnClientEvent.Connect(payload => {
 		if (!guard(payload)) throw "did not pass guard"
 
-		store.update(payload.state)
+		store.dispatched(payload)
 	})
 }

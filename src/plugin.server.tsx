@@ -22,8 +22,8 @@ const dockWidget = plugin.CreateDockWidgetPluginGui(
 	new DockWidgetPluginGuiInfo(Enum.InitialDockState.Float, false, false, 600, 400)
 )
 
-button.Click.Connect(store.toggle)
-dockWidget.BindToClose(() => store.toggle(false))
+button.Click.Connect(store.toggled)
+dockWidget.BindToClose(() => store.toggled(false))
 
 store.subscribe(
 	state => state.widget.open,
