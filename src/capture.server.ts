@@ -11,7 +11,7 @@ if (!event) {
 	event.Name = "REFLEX_DEVTOOLS"
 	event.Parent = ReplicatedStorage
 
-	print("Created REFLEX_DEVTOOLS event")
+	print("[reflex-devtools] Created capture event")
 }
 
 const guard = t.interface({
