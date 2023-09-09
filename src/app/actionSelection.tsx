@@ -1,8 +1,11 @@
 import inspect from "@rbxts/inspect"
-import Roact, { useMemo } from "@rbxts/roact"
+import Roact, { memo, useMemo } from "@rbxts/roact"
+import { useRootProducer } from "store"
 import { Action } from "store/game"
 
-export function ActionSelection(props: { action: Action; index: number; selected: boolean; onSelected: () => void }) {
+export const ActionSelection = memo((props: { action: Action; index: number; selected: boolean }) => {
+	const store = useRootProducer()
+
 	const inspectedArgs = useMemo(() => inspect(props.action.args), [props.action])
 
 	const formattedTimestamp = DateTime.fromUnixTimestampMillis(props.action.timestamp).FormatLocalTime(
@@ -23,11 +26,15 @@ export function ActionSelection(props: { action: Action; index: number; selected
 	return (
 		<textbutton
 			AutomaticSize={Enum.AutomaticSize.Y}
-			BackgroundColor3={settings().Studio.Theme.GetColor(
-				Enum.StudioStyleGuideColor[props.selected ? "MainButton" : "Button"]
-			)}
+			BackgroundColor3={backgroundColor}
 			BorderColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.DialogButtonBorder)}
-			Event={{ Activated: props.onSelected }}
+			Event={{
+				Activated: () => {
+					if (!props.selected) {
+						store.selectedAction(props.index, true)
+					} else store.deselectedAction()
+				}
+			}}
 			LayoutOrder={0 - props.index}
 			RichText
 			Size={UDim2.fromScale(1, 0)}
@@ -79,4 +86,4 @@ export function ActionSelection(props: { action: Action; index: number; selected
 			/>
 		</textbutton>
 	)
-}
+})

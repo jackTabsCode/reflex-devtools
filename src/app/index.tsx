@@ -1,4 +1,4 @@
-import Roact, { useEffect } from "@rbxts/roact"
+import Roact, { useEffect, useMemo } from "@rbxts/roact"
 import { useRootProducer, useRootSelector } from "store"
 import Highlighter from "vendor/highlighter"
 import { ActionSelection } from "./actionSelection"
@@ -23,6 +23,12 @@ export function App() {
 		}
 	}, [selected, actions])
 
+	const actionSelections = useMemo(() => {
+		return actions.map((action, index) => (
+			<ActionSelection action={action} index={index} key={index} selected={index === selected?.index} />
+		))
+	}, [actions, selected])
+
 	return (
 		<frame BackgroundTransparency={1} Size={UDim2.fromScale(1, 1)} key="main">
 			<scrollingframe
@@ -35,21 +41,8 @@ export function App() {
 				Size={UDim2.fromScale(ACTIONS_WIDTH, 1)}
 				key="actions"
 			>
-				{actions.map((action, index) => (
-					<ActionSelection
-						action={action}
-						index={index}
-						key={index}
-						onSelected={() => {
-							const isSelected = selected?.index === index
-							if (!isSelected) {
-								store.selectedAction(index, true)
-							} else store.deselectedAction()
-						}}
-						selected={index === selected?.index}
-					/>
-				))}
-				<uilistlayout SortOrder={Enum.SortOrder.LayoutOrder} key="layout" />
+				{actionSelections}
+				<uilistlayout Padding={new UDim(0, 5)} SortOrder={Enum.SortOrder.LayoutOrder} key="layout" />
 			</scrollingframe>
 			<frame
 				BackgroundTransparency={1}
