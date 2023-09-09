@@ -1,5 +1,5 @@
 import inspect from "@rbxts/inspect"
-import Roact, { useEffect, useRef } from "@rbxts/roact"
+import Roact, { useBinding, useEffect, useRef } from "@rbxts/roact"
 import Highlighter from "vendor/highlighter"
 
 export function ActionState(props: { state: {} }) {
@@ -17,17 +17,21 @@ export function ActionState(props: { state: {} }) {
 
 	const inspected = inspect(props.state)
 
+	const [textYSize, setTextYSize] = useBinding(0)
+
 	return (
 		<scrollingframe
-			AutomaticCanvasSize={Enum.AutomaticSize.XY}
 			BackgroundTransparency={1}
 			BorderColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.Border)}
+			CanvasSize={textYSize.map(y => new UDim2(1, 0, 0, y))}
 			ScrollBarImageColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ScrollBar)}
 			ScrollBarThickness={6}
 			Size={UDim2.fromScale(1, 1)}
 		>
 			<textlabel
+				AutomaticSize={Enum.AutomaticSize.XY}
 				BackgroundTransparency={1}
+				Change={{ AbsoluteSize: rbx => setTextYSize(rbx.AbsoluteSize.Y) }}
 				Font={Enum.Font.RobotoMono}
 				Size={UDim2.fromScale(1, 1)}
 				Text={inspected}
