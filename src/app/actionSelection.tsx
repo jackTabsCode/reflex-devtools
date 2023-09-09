@@ -44,6 +44,7 @@ export const ActionSelection = memo((props: { action: Action; index: number; sel
 				AutomaticSize={Enum.AutomaticSize.XY}
 				BackgroundTransparency={1}
 				Font={Enum.Font.SourceSansSemibold}
+				LayoutOrder={0}
 				Text={props.action.name}
 				TextColor3={textColor}
 				TextSize={16}
@@ -56,6 +57,7 @@ export const ActionSelection = memo((props: { action: Action; index: number; sel
 					AutomaticSize={Enum.AutomaticSize.XY}
 					BackgroundTransparency={1}
 					Font={Enum.Font.RobotoMono}
+					LayoutOrder={1}
 					Text={inspectedArgs}
 					TextColor3={textColor}
 					TextSize={16}
@@ -68,6 +70,7 @@ export const ActionSelection = memo((props: { action: Action; index: number; sel
 				AutomaticSize={Enum.AutomaticSize.XY}
 				BackgroundTransparency={1}
 				Font={Enum.Font.RobotoMono}
+				LayoutOrder={2}
 				Text={`${formattedTimestamp} • #${props.index}`}
 				TextColor3={subTextColor}
 				TextSize={15}
@@ -76,7 +79,7 @@ export const ActionSelection = memo((props: { action: Action; index: number; sel
 				key="index"
 			/>
 
-			<uilistlayout Padding={new UDim(0, 2)} key="layout" />
+			<uilistlayout Padding={new UDim(0, 2)} SortOrder={Enum.SortOrder.LayoutOrder} key="layout" />
 			<uipadding
 				PaddingBottom={new UDim(0, 8)}
 				PaddingLeft={new UDim(0, 8)}
