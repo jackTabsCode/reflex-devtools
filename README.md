@@ -44,3 +44,8 @@ export const store = combineProducers({
 	// ...
 }).applyMiddleware(devToolsMiddleware)
 ```
+
+## Why does it use RemoteEvents?
+
+Couldn't get BindableEvents to be received by the Plugin.
+Context: https://discord.com/channels/385151591524597761/385151591998816257/1149590579529912320
