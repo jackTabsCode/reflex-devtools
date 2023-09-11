@@ -2,8 +2,8 @@
 
 Developer tools for [Reflex](https://github.com/littensy/reflex), a Roblox state container library.
 
-[!WARNING]
-This is nowhere near finished, but is usable! It should only be used on the Client at this time.
+> [!WARNING]
+> This is nowhere near finished, but is usable! It should only be used on the Client at this time.
 
 ## Building
 
