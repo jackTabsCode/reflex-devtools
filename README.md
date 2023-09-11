@@ -37,6 +37,16 @@ export const devToolsMiddleware: ProducerMiddleware<RootState, RootActions> = ()
 }
 ```
 
+Whatever you do, fire the event an object that satisfies the following type:
+
+```ts
+interface DispatchedAction {
+	name: string
+	args: unknown[]
+	state: {}
+}
+```
+
 ...then apply it to your store:
 
 ```ts
