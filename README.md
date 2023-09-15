@@ -5,6 +5,11 @@ Developer tools for [Reflex](https://github.com/littensy/reflex), a Roblox state
 > [!WARNING]
 > This is nowhere near finished, but is usable! It should only be used on the Client at this time.
 
+## Installation
+
+-   Download the binary on the Releases page and place it in your `Roblox/Plugins` folder.
+-   [Download it from the Creator Marketplace](https://create.roblox.com/marketplace/asset/14778387667/Reflex-DevTools).
+
 ## Building
 
 ```bash
