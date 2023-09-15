@@ -9,8 +9,8 @@
 		"watch": "rbxtsc -w"
 	},
 	"keywords": [],
-	"author": "",
-	"license": "ISC",
+	"author": "Jack Taylor",
+	"license": "MIT",
 	"devDependencies": {
 		"@rbxts/compiler-types": "^2.1.1-types.0",
 		"@rbxts/react-reflex": "^0.2.0",
