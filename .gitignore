@@ -4,3 +4,4 @@
 *.tsbuildinfo
 plugin.rbxm
 .DS_Store
+sourcemap.json
