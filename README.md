@@ -67,4 +67,4 @@ Context: https://discord.com/channels/385151591524597761/385151591998816257/1149
 
 ## Attributions
 
--   [boatbomber/Highlighter](https://github.com/boatbomber/Highlighter)
+Can be found in `package.json`
