@@ -1,6 +1,6 @@
 {
 	"name": "reflex-devtools",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -32,6 +32,7 @@
 		"typescript": "^5.2.2"
 	},
 	"dependencies": {
+		"@rbxts/highlighter": "^0.8.2-ts.0",
 		"@rbxts/inspect": "^1.0.1",
 		"@rbxts/object-utils": "^1.0.4",
 		"@rbxts/pretty-react-hooks": "^0.2.1",
