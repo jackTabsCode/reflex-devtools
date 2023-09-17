@@ -1,6 +1,6 @@
+import Highlighter from "@rbxts/highlighter"
 import inspect from "@rbxts/inspect"
 import Roact, { useBinding, useEffect, useRef } from "@rbxts/roact"
-import Highlighter from "vendor/highlighter"
 
 export function ActionState(props: { state: {} }) {
 	const label = useRef<TextLabel>()
