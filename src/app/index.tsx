@@ -2,8 +2,8 @@ import Highlighter from "@rbxts/highlighter"
 import Roact, { useEffect } from "@rbxts/roact"
 import { FlatList } from "@rbxts/virtualized-list"
 import { useRootProducer, useRootSelector } from "store"
-import { ActionSelection } from "./actionSelection"
-import { ActionState } from "./actionState"
+import ActionSelection from "./actionSelection"
+import ActionState from "./actionState"
 
 Highlighter.matchStudioSettings()
 
@@ -36,6 +36,9 @@ export function App() {
 				key="actions"
 			>
 				<FlatList
+					contentContainerStyle={{
+						BackgroundTransparency: 1
+					}}
 					data={actions}
 					renderItem={entry => (
 						<ActionSelection
@@ -45,6 +48,12 @@ export function App() {
 							selected={entry.index - 1 === selected?.index}
 						/>
 					)}
+					style={{
+						BackgroundTransparency: 1,
+						ScrollBarImageColor3: settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ScrollBar),
+						ScrollBarThickness: 6,
+						BorderSizePixel: 0
+					}}
 				/>
 			</frame>
 			<frame
