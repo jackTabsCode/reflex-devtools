@@ -1,8 +1,8 @@
 import Highlighter from "@rbxts/highlighter"
 import inspect from "@rbxts/inspect"
-import Roact, { useBinding, useEffect, useRef } from "@rbxts/roact"
+import Roact, { memo, useBinding, useEffect, useRef } from "@rbxts/roact"
 
-export function ActionState(props: { state: {} }) {
+function ActionState(props: { state: {} }) {
 	const label = useRef<TextLabel>()
 
 	useEffect(() => {
@@ -44,3 +44,5 @@ export function ActionState(props: { state: {} }) {
 		</scrollingframe>
 	)
 }
+
+export = memo(ActionState)

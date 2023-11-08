@@ -3,7 +3,7 @@ import Roact, { memo, useMemo } from "@rbxts/roact"
 import { useRootProducer } from "store"
 import { Action } from "store/game"
 
-export const ActionSelection = memo((props: { action: Action; index: number; selected: boolean }) => {
+function ActionSelection(props: { action: Action; index: number; selected: boolean }) {
 	const store = useRootProducer()
 
 	const inspectedArgs = useMemo(() => inspect(props.action.args), [props.action])
@@ -23,6 +23,8 @@ export const ActionSelection = memo((props: { action: Action; index: number; sel
 		Enum.StudioStyleGuideColor[props.selected ? "DialogMainButtonText" : "SubText"]
 	)
 
+	print(props.index, "rendered")
+
 	return (
 		<textbutton
 			AutomaticSize={Enum.AutomaticSize.Y}
@@ -35,7 +37,6 @@ export const ActionSelection = memo((props: { action: Action; index: number; sel
 					} else store.deselectedAction()
 				}
 			}}
-			LayoutOrder={0 - props.index}
 			RichText
 			Size={UDim2.fromScale(1, 0)}
 			Text=""
@@ -71,7 +72,7 @@ export const ActionSelection = memo((props: { action: Action; index: number; sel
 				BackgroundTransparency={1}
 				Font={Enum.Font.RobotoMono}
 				LayoutOrder={2}
-				Text={`${formattedTimestamp} • #${props.index}`}
+				Text={`${formattedTimestamp} • #${props.index + 1}`}
 				TextColor3={subTextColor}
 				TextSize={15}
 				TextWrapped
@@ -89,4 +90,6 @@ export const ActionSelection = memo((props: { action: Action; index: number; sel
 			/>
 		</textbutton>
 	)
-})
+}
+
+export = memo(ActionSelection)

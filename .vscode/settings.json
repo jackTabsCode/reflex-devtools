@@ -8,5 +8,13 @@
 		"source.fixAll": true
 	},
 	"emmet.showAbbreviationSuggestions": false,
-	"emmet.excludeLanguages": ["markdown", "typescriptreact"]
+	"emmet.excludeLanguages": ["markdown", "typescriptreact"],
+	"emeraldwalk.runonsave": {
+		"commands": [
+			{
+				"match": ".*",
+				"cmd": "rbxtsc --verbose && rojo build -o \"C:\\Users\\jackc\\AppData\\Local\\Roblox\\Plugins\\ReflexDevTools.rbxm\""
+			}
+		]
+	}
 }

@@ -1,8 +1,9 @@
 import Highlighter from "@rbxts/highlighter"
-import Roact, { useEffect, useMemo } from "@rbxts/roact"
+import Roact, { useEffect } from "@rbxts/roact"
+import { FlatList } from "@rbxts/virtualized-list"
 import { useRootProducer, useRootSelector } from "store"
-import { ActionSelection } from "./actionSelection"
-import { ActionState } from "./actionState"
+import ActionSelection from "./actionSelection"
+import ActionState from "./actionState"
 
 Highlighter.matchStudioSettings()
 
@@ -17,33 +18,44 @@ export function App() {
 	const selectedAction = selected !== undefined ? actions[selected.index] : undefined
 
 	useEffect(() => {
-		const last = actions.size() - 1
+		const size = actions.size()
+		if (size === 0) return
+
+		const last = size - 1
 		if ((selected && !selected.manual && selected.index !== last) || !selected) {
 			store.selectedAction(last, false)
 		}
 	}, [selected, actions])
 
-	const actionSelections = useMemo(() => {
-		return actions.map((action, index) => (
-			<ActionSelection action={action} index={index} key={index} selected={index === selected?.index} />
-		))
-	}, [actions, selected])
-
 	return (
 		<frame BackgroundTransparency={1} Size={UDim2.fromScale(1, 1)} key="main">
-			<scrollingframe
-				AutomaticCanvasSize={Enum.AutomaticSize.Y}
+			<frame
 				BackgroundTransparency={1}
 				BorderColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.Border)}
-				CanvasSize={new UDim2()}
-				ScrollBarImageColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ScrollBar)}
-				ScrollBarThickness={6}
 				Size={UDim2.fromScale(ACTIONS_WIDTH, 1)}
 				key="actions"
 			>
-				{actionSelections}
-				<uilistlayout Padding={new UDim(0, 5)} SortOrder={Enum.SortOrder.LayoutOrder} key="layout" />
-			</scrollingframe>
+				<FlatList
+					contentContainerStyle={{
+						BackgroundTransparency: 1
+					}}
+					data={actions}
+					renderItem={entry => (
+						<ActionSelection
+							action={entry.item}
+							index={entry.index - 1}
+							key={entry.index}
+							selected={entry.index - 1 === selected?.index}
+						/>
+					)}
+					style={{
+						BackgroundTransparency: 1,
+						ScrollBarImageColor3: settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ScrollBar),
+						ScrollBarThickness: 6,
+						BorderSizePixel: 0
+					}}
+				/>
+			</frame>
 			<frame
 				BackgroundTransparency={1}
 				Position={UDim2.fromScale(ACTIONS_WIDTH, 0)}
