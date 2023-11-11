@@ -44,6 +44,7 @@ export function App() {
 				{actionSelections}
 				<uilistlayout Padding={new UDim(0, 5)} SortOrder={Enum.SortOrder.LayoutOrder} key="layout" />
 			</scrollingframe>
+
 			<frame
 				BackgroundTransparency={1}
 				Position={UDim2.fromScale(ACTIONS_WIDTH, 0)}
@@ -52,6 +53,21 @@ export function App() {
 			>
 				{selectedAction && <ActionState state={selectedAction.state} />}
 			</frame>
+
+			{actions.isEmpty() && (
+				<textlabel
+					AnchorPoint={new Vector2(0.5, 0.5)}
+					AutomaticSize={Enum.AutomaticSize.XY}
+					BackgroundTransparency={1}
+					Font={Enum.Font.SourceSans}
+					Position={UDim2.fromScale(0.5, 0.5)}
+					Text="Oopsie woopsie, no actions here yet! Try dispatching some."
+					TextColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.DimmedText)}
+					TextSize={16}
+					TextWrapped
+					key="empty"
+				/>
+			)}
 		</frame>
 	)
 }
