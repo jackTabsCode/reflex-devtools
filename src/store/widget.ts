@@ -6,11 +6,13 @@ export interface Widget {
 	open: boolean
 	selectedIndex?: number
 	autoSelectLatest: boolean
+	showArgs: boolean
 }
 
 const initialState: Widget = {
 	open: false,
-	autoSelectLatest: true
+	autoSelectLatest: true,
+	showArgs: true
 }
 
 export const widget = createProducer(initialState, {
@@ -26,5 +28,9 @@ export const widget = createProducer(initialState, {
 	changeAutoSelectMode: (state, mode: boolean) => ({
 		...state,
 		autoSelectLatest: mode
+	}),
+	changeShowArgs: (state, show: boolean) => ({
+		...state,
+		showArgs: show
 	})
 })

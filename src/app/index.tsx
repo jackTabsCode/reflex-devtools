@@ -17,6 +17,7 @@ export function App() {
 	const actions = useRootSelector(state => state.game.actions)
 	const selectedIndex = useRootSelector(state => state.widget.selectedIndex)
 	const autoSelectLatest = useRootSelector(state => state.widget.autoSelectLatest)
+	const showArgs = useRootSelector(state => state.widget.showArgs)
 
 	const selectedAction = selectedIndex !== undefined ? actions[selectedIndex] : undefined
 
@@ -54,6 +55,11 @@ export function App() {
 					text="Toggle"
 				/>
 				<RowText order={4} text={`Selection Mode: ${autoSelectLatest ? "Auto" : "Manual"}`} />
+
+				<RowText order={3} text="•" />
+
+				<RowButton key="showargs" onClick={() => store.changeShowArgs(!showArgs)} order={5} text="Toggle" />
+				<RowText order={6} text={`Show Args: ${showArgs ? "Yes" : "No"}`} />
 
 				<uilistlayout
 					FillDirection={Enum.FillDirection.Horizontal}

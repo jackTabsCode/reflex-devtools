@@ -1,6 +1,6 @@
 import inspect from "@rbxts/inspect"
 import Roact, { memo, useMemo } from "@rbxts/roact"
-import { useRootProducer } from "store"
+import { useRootProducer, useRootSelector } from "store"
 import { Action } from "store/game"
 
 interface Props {
@@ -11,6 +11,8 @@ interface Props {
 
 export const ActionSelection = memo((props: Props) => {
 	const store = useRootProducer()
+
+	const showArgs = useRootSelector(state => state.widget.showArgs)
 
 	const inspectedArgs = useMemo(() => inspect(props.action.args), [props.action])
 
@@ -67,6 +69,7 @@ export const ActionSelection = memo((props: Props) => {
 					TextSize={16}
 					TextWrapped
 					TextXAlignment={Enum.TextXAlignment.Left}
+					Visible={showArgs}
 					key="args"
 				/>
 			)}
