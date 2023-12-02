@@ -43,23 +43,28 @@ export function App() {
 				Size={new UDim2(1, 0, 0, ROW_HEIGHT)}
 				key="topRow"
 			>
-				<RowButton key="clear" onClick={() => store.clear()} order={0} text="Clear" />
-				<RowText order={1} text={`${actions.size()} dispatched`} />
+				<RowText order={0} text={`${actions.size()} dispatched`} />
+				<RowButton key="clear" onClick={() => store.clear()} order={1} text="Clear" />
 
 				<RowText order={2} text="•" />
 
+				<RowText order={3} text="Selection Mode" />
 				<RowButton
 					key="autoselect"
 					onClick={() => store.changeAutoSelectMode(!autoSelectLatest)}
-					order={3}
-					text="Toggle"
+					order={4}
+					text={autoSelectLatest ? "Auto" : "Manual"}
 				/>
-				<RowText order={4} text={`Selection Mode: ${autoSelectLatest ? "Auto" : "Manual"}`} />
 
 				<RowText order={5} text="•" />
 
-				<RowButton key="showargs" onClick={() => store.changeShowArgs(!showArgs)} order={6} text="Toggle" />
-				<RowText order={7} text={`Show Args: ${showArgs ? "Yes" : "No"}`} />
+				<RowText order={6} text="Show Arguments" />
+				<RowButton
+					key="showargs"
+					onClick={() => store.changeShowArgs(!showArgs)}
+					order={7}
+					text={showArgs ? "On" : "Off"}
+				/>
 
 				<uilistlayout
 					FillDirection={Enum.FillDirection.Horizontal}
