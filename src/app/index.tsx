@@ -56,10 +56,10 @@ export function App() {
 				/>
 				<RowText order={4} text={`Selection Mode: ${autoSelectLatest ? "Auto" : "Manual"}`} />
 
-				<RowText order={3} text="•" />
+				<RowText order={5} text="•" />
 
-				<RowButton key="showargs" onClick={() => store.changeShowArgs(!showArgs)} order={5} text="Toggle" />
-				<RowText order={6} text={`Show Args: ${showArgs ? "Yes" : "No"}`} />
+				<RowButton key="showargs" onClick={() => store.changeShowArgs(!showArgs)} order={6} text="Toggle" />
+				<RowText order={7} text={`Show Args: ${showArgs ? "Yes" : "No"}`} />
 
 				<uilistlayout
 					FillDirection={Enum.FillDirection.Horizontal}
