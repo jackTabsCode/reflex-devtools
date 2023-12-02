@@ -1,6 +1,11 @@
 import Roact from "@rbxts/roact"
 
-export function RowText(props: { text: string; order: number }) {
+interface Props {
+	text: string
+	order: number
+}
+
+export function RowText(props: Props) {
 	return (
 		<textlabel
 			AutomaticSize={Enum.AutomaticSize.XY}

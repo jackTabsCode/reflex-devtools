@@ -3,7 +3,13 @@ import Roact, { memo, useMemo } from "@rbxts/roact"
 import { useRootProducer } from "store"
 import { Action } from "store/game"
 
-export const ActionSelection = memo((props: { action: Action; index: number; selected: boolean }) => {
+interface Props {
+	action: Action
+	index: number
+	selected: boolean
+}
+
+export const ActionSelection = memo((props: Props) => {
 	const store = useRootProducer()
 
 	const inspectedArgs = useMemo(() => inspect(props.action.args), [props.action])

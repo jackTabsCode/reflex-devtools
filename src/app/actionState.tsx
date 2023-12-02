@@ -2,7 +2,11 @@ import Highlighter from "@rbxts/highlighter"
 import inspect from "@rbxts/inspect"
 import Roact, { useBinding, useEffect, useRef } from "@rbxts/roact"
 
-export function ActionState(props: { state: {} }) {
+interface Props {
+	state: {}
+}
+
+export function ActionState(props: Props) {
 	const label = useRef<TextLabel>()
 
 	useEffect(() => {

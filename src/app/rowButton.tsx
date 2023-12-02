@@ -1,6 +1,12 @@
 import Roact from "@rbxts/roact"
 
-export function RowButton(props: { text: string; order: number; onClick: () => void }) {
+interface Props {
+	text: string
+	order: number
+	onClick: () => void
+}
+
+export function RowButton(props: Props) {
 	return (
 		<textbutton
 			AutomaticSize={Enum.AutomaticSize.X}
