@@ -24,5 +24,9 @@ export const _game = createProducer(initialState, {
 	dispatched: (state, action: DispatchedAction, timestamp: number) => ({
 		...state,
 		actions: [...state.actions, { ...action, timestamp }]
+	}),
+	clear: state => ({
+		...state,
+		actions: []
 	})
 })

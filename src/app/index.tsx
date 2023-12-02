@@ -3,42 +3,78 @@ import Roact, { useEffect, useMemo } from "@rbxts/roact"
 import { useRootProducer, useRootSelector } from "store"
 import { ActionSelection } from "./actionSelection"
 import { ActionState } from "./actionState"
+import { RowButton } from "./rowButton"
+import { RowText } from "./rowText"
 
 Highlighter.matchStudioSettings()
 
 const ACTIONS_WIDTH = 0.3
+const ROW_HEIGHT = 30
 
 export function App() {
 	const store = useRootProducer()
 
 	const actions = useRootSelector(state => state.game.actions)
-	const selected = useRootSelector(state => state.widget.selected)
+	const selectedIndex = useRootSelector(state => state.widget.selectedIndex)
+	const autoSelectLatest = useRootSelector(state => state.widget.autoSelectLatest)
 
-	const selectedAction = selected !== undefined ? actions[selected.index] : undefined
+	const selectedAction = selectedIndex !== undefined ? actions[selectedIndex] : undefined
 
 	useEffect(() => {
 		const last = actions.size() - 1
-		if ((selected && !selected.manual && selected.index !== last) || !selected) {
-			store.selectedAction(last, false)
+		if (autoSelectLatest && last >= 0) {
+			store.selectedAction(last)
 		}
-	}, [selected, actions])
+	}, [selectedIndex, actions, autoSelectLatest])
 
 	const actionSelections = useMemo(() => {
 		return actions.map((action, index) => (
-			<ActionSelection action={action} index={index} key={index} selected={index === selected?.index} />
+			<ActionSelection action={action} index={index} key={index} selected={index === selectedIndex} />
 		))
-	}, [actions, selected])
+	}, [actions, selectedIndex])
 
 	return (
 		<frame BackgroundTransparency={1} Size={UDim2.fromScale(1, 1)} key="main">
+			<frame
+				BackgroundColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.Titlebar)}
+				BackgroundTransparency={0}
+				BorderSizePixel={0}
+				Size={new UDim2(1, 0, 0, ROW_HEIGHT)}
+				key="topRow"
+			>
+				<RowButton key="clear" onClick={() => store.clear()} order={0} text="Clear" />
+				<RowText order={1} text={`${actions.size()} dispatched`} />
+
+				<RowText order={2} text="•" />
+
+				<RowButton
+					key="autoselect"
+					onClick={() => store.changeAutoSelectMode(!autoSelectLatest)}
+					order={3}
+					text="Toggle"
+				/>
+				<RowText order={4} text={`Selection Mode: ${autoSelectLatest ? "Auto" : "Manual"}`} />
+
+				<uilistlayout
+					FillDirection={Enum.FillDirection.Horizontal}
+					HorizontalAlignment={Enum.HorizontalAlignment.Left}
+					Padding={new UDim(0, 10)}
+					SortOrder={Enum.SortOrder.LayoutOrder}
+					VerticalAlignment={Enum.VerticalAlignment.Center}
+					key="layout"
+				/>
+				<uipadding PaddingLeft={new UDim(0, 10)} PaddingRight={new UDim(0, 10)} key="padding" />
+			</frame>
+
 			<scrollingframe
 				AutomaticCanvasSize={Enum.AutomaticSize.Y}
 				BackgroundTransparency={1}
 				BorderColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.Border)}
 				CanvasSize={new UDim2()}
+				Position={new UDim2(0, 0, 0, ROW_HEIGHT)}
 				ScrollBarImageColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ScrollBar)}
 				ScrollBarThickness={6}
-				Size={UDim2.fromScale(ACTIONS_WIDTH, 1)}
+				Size={new UDim2(ACTIONS_WIDTH, 0, 1, -ROW_HEIGHT)}
 				key="actions"
 			>
 				{actionSelections}
@@ -47,27 +83,12 @@ export function App() {
 
 			<frame
 				BackgroundTransparency={1}
-				Position={UDim2.fromScale(ACTIONS_WIDTH, 0)}
-				Size={UDim2.fromScale(1 - ACTIONS_WIDTH, 1)}
+				Position={new UDim2(ACTIONS_WIDTH, 0, 0, ROW_HEIGHT)}
+				Size={new UDim2(1 - ACTIONS_WIDTH, 0, 1, -ROW_HEIGHT)}
 				key="state"
 			>
 				{selectedAction && <ActionState state={selectedAction.state} />}
 			</frame>
-
-			{actions.isEmpty() && (
-				<textlabel
-					AnchorPoint={new Vector2(0.5, 0.5)}
-					AutomaticSize={Enum.AutomaticSize.XY}
-					BackgroundTransparency={1}
-					Font={Enum.Font.SourceSans}
-					Position={UDim2.fromScale(0.5, 0.5)}
-					Text="Oopsie woopsie, no actions here yet! Try dispatching some."
-					TextColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.DimmedText)}
-					TextSize={16}
-					TextWrapped
-					key="empty"
-				/>
-			)}
 		</frame>
 	)
 }

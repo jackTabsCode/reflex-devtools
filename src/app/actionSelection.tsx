@@ -30,9 +30,7 @@ export const ActionSelection = memo((props: { action: Action; index: number; sel
 			BorderColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.DialogButtonBorder)}
 			Event={{
 				Activated: () => {
-					if (!props.selected) {
-						store.selectedAction(props.index, true)
-					} else store.deselectedAction()
+					store.selectedAction(props.index, true)
 				}
 			}}
 			LayoutOrder={0 - props.index}
