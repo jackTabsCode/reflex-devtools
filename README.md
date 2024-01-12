@@ -10,8 +10,7 @@ Developer tools for [Reflex](https://github.com/littensy/reflex), a Roblox state
 ## Installation
 
 -   Download the binary on the Releases page and place it in your `Roblox/Plugins` folder.
--   [Download it from the Creator Marketplace](https://create.roblox.com/marketplace/asset/14778387667/Reflex-![Uploading image.png…]()
-DevTools).
+-   [Download it from the Creator Marketplace](https://create.roblox.com/marketplace/asset/14778387667/Reflex-DevTools).
 
 ## Building
 
