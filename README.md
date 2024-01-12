@@ -30,7 +30,7 @@ Here's what I use:
 ```ts
 const event = ReplicatedStorage.FindFirstChild("REFLEX_DEVTOOLS") as RemoteEvent
 
-export const devToolsMiddleware: ProducerMiddleware<RootState, RootActions> = () => {
+const middleware: ProducerMiddleware<RootState, RootActions> = () => {
 	return (nextAction, actionName) => {
 		return (...args) => {
 			const state = nextAction(...args)
@@ -42,6 +42,8 @@ export const devToolsMiddleware: ProducerMiddleware<RootState, RootActions> = ()
 		}
 	}
 }
+
+export = middleware
 ```
 
 Whatever you do, fire the event an object that satisfies the following type:
@@ -59,14 +61,10 @@ interface DispatchedAction {
 ```ts
 export const store = combineProducers({
 	// ...
-}).applyMiddleware(devToolsMiddleware)
+}).applyMiddleware(devTools)
 ```
 
 ## Why does it use RemoteEvents?
 
 Couldn't get BindableEvents to be received by the Plugin.
 Context: https://discord.com/channels/385151591524597761/385151591998816257/1149590579529912320
-
-## Attributions
-
-Can be found in `package.json`
