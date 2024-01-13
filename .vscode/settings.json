@@ -5,7 +5,7 @@
 	"eslint.run": "onType",
 	"eslint.format.enable": true,
 	"editor.codeActionsOnSave": {
-		"source.fixAll": true
+		"source.fixAll": "explicit"
 	},
 	"emmet.showAbbreviationSuggestions": false,
 	"emmet.excludeLanguages": ["markdown", "typescriptreact"]

@@ -5,7 +5,7 @@ import { createProducer } from "@rbxts/reflex"
 interface DispatchedAction {
 	name: string
 	args: unknown[]
-	state: {}
+	state: object
 }
 
 export interface Action extends DispatchedAction {
@@ -17,16 +17,16 @@ export interface Game {
 }
 
 const initialState: Game = {
-	actions: []
+	actions: [],
 }
 
 export const _game = createProducer(initialState, {
 	dispatched: (state, action: DispatchedAction, timestamp: number) => ({
 		...state,
-		actions: [...state.actions, { ...action, timestamp }]
+		actions: [...state.actions, { ...action, timestamp }],
 	}),
-	clear: state => ({
+	clear: (state) => ({
 		...state,
-		actions: []
-	})
+		actions: [],
+	}),
 })

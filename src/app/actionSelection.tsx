@@ -12,23 +12,23 @@ interface Props {
 export const ActionSelection = memo((props: Props) => {
 	const store = useRootProducer()
 
-	const showArgs = useRootSelector(state => state.widget.showArgs)
+	const showArgs = useRootSelector((state) => state.widget.showArgs)
 
 	const inspectedArgs = useMemo(() => inspect(props.action.args), [props.action])
 
 	const formattedTimestamp = DateTime.fromUnixTimestampMillis(props.action.timestamp).FormatLocalTime(
 		"hh:mm:ss.SSS",
-		"en-us"
+		"en-us",
 	)
 
 	const backgroundColor = settings().Studio.Theme.GetColor(
-		Enum.StudioStyleGuideColor[props.selected ? "DialogMainButton" : "DialogButton"]
+		Enum.StudioStyleGuideColor[props.selected ? "DialogMainButton" : "DialogButton"],
 	)
 	const textColor = settings().Studio.Theme.GetColor(
-		Enum.StudioStyleGuideColor[props.selected ? "DialogMainButtonText" : "DialogButtonText"]
+		Enum.StudioStyleGuideColor[props.selected ? "DialogMainButtonText" : "DialogButtonText"],
 	)
 	const subTextColor = settings().Studio.Theme.GetColor(
-		Enum.StudioStyleGuideColor[props.selected ? "DialogMainButtonText" : "SubText"]
+		Enum.StudioStyleGuideColor[props.selected ? "DialogMainButtonText" : "SubText"],
 	)
 
 	return (
@@ -39,7 +39,7 @@ export const ActionSelection = memo((props: Props) => {
 			Event={{
 				Activated: () => {
 					store.selectedAction(props.index, true)
-				}
+				},
 			}}
 			LayoutOrder={0 - props.index}
 			RichText

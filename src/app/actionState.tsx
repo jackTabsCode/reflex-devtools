@@ -3,7 +3,7 @@ import inspect from "@rbxts/inspect"
 import Roact, { useBinding, useEffect, useRef } from "@rbxts/roact"
 
 interface Props {
-	state: {}
+	state: object
 }
 
 export function ActionState(props: Props) {
@@ -27,7 +27,7 @@ export function ActionState(props: Props) {
 		<scrollingframe
 			BackgroundTransparency={1}
 			BorderColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.Border)}
-			CanvasSize={textYSize.map(y => new UDim2(1, 0, 0, y))}
+			CanvasSize={textYSize.map((y) => new UDim2(1, 0, 0, y))}
 			ScrollBarImageColor3={settings().Studio.Theme.GetColor(Enum.StudioStyleGuideColor.ScrollBar)}
 			ScrollBarThickness={6}
 			Size={UDim2.fromScale(1, 1)}
@@ -35,7 +35,7 @@ export function ActionState(props: Props) {
 			<textlabel
 				AutomaticSize={Enum.AutomaticSize.XY}
 				BackgroundTransparency={1}
-				Change={{ AbsoluteSize: rbx => setTextYSize(rbx.AbsoluteSize.Y) }}
+				Change={{ AbsoluteSize: (rbx) => setTextYSize(rbx.AbsoluteSize.Y) }}
 				Font={Enum.Font.RobotoMono}
 				Size={UDim2.fromScale(1, 1)}
 				Text={inspected}

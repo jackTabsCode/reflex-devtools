@@ -12,25 +12,25 @@ export interface Widget {
 const initialState: Widget = {
 	open: false,
 	autoSelectLatest: true,
-	showArgs: true
+	showArgs: true,
 }
 
 export const widget = createProducer(initialState, {
 	toggled: (state, open?: boolean) => ({
 		...state,
-		open: open ?? !state.open
+		open: open ?? !state.open,
 	}),
 	selectedAction: (state, index: number, manual?: boolean) => ({
 		...state,
 		selectedIndex: index,
-		autoSelectLatest: !manual
+		autoSelectLatest: !manual,
 	}),
 	changeAutoSelectMode: (state, mode: boolean) => ({
 		...state,
-		autoSelectLatest: mode
+		autoSelectLatest: mode,
 	}),
 	changeShowArgs: (state, show: boolean) => ({
 		...state,
-		showArgs: show
-	})
+		showArgs: show,
+	}),
 })

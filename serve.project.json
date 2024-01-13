@@ -1,6 +1,10 @@
 {
 	"name": "roblox-ts-plugin",
-	"globIgnorePaths": ["**/package.json", "**/tsconfig.json", "out/tsconfig.tsbuildinfo"],
+	"globIgnorePaths": [
+		"**/package.json",
+		"**/tsconfig.json",
+		"out/tsconfig.tsbuildinfo"
+	],
 	"tree": {
 		"$className": "DataModel",
 		"PluginDebugService": {

@@ -14,10 +14,10 @@ const ROW_HEIGHT = 30
 export function App() {
 	const store = useRootProducer()
 
-	const actions = useRootSelector(state => state.game.actions)
-	const selectedIndex = useRootSelector(state => state.widget.selectedIndex)
-	const autoSelectLatest = useRootSelector(state => state.widget.autoSelectLatest)
-	const showArgs = useRootSelector(state => state.widget.showArgs)
+	const actions = useRootSelector((state) => state.game.actions)
+	const selectedIndex = useRootSelector((state) => state.widget.selectedIndex)
+	const autoSelectLatest = useRootSelector((state) => state.widget.autoSelectLatest)
+	const showArgs = useRootSelector((state) => state.widget.showArgs)
 
 	const selectedAction = selectedIndex !== undefined ? actions[selectedIndex] : undefined
 
@@ -29,9 +29,11 @@ export function App() {
 	}, [selectedIndex, actions, autoSelectLatest])
 
 	const actionSelections = useMemo(() => {
-		return actions.map((action, index) => (
-			<ActionSelection action={action} index={index} key={index} selected={index === selectedIndex} />
-		))
+		const elements = new Map<number, Roact.Element>()
+		for (const [index, action] of pairs(actions)) {
+			elements.set(index, <ActionSelection action={action} index={index} selected={index === selectedIndex} />)
+		}
+		return elements
 	}, [actions, selectedIndex])
 
 	return (
