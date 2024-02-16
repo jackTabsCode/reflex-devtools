@@ -27,8 +27,6 @@
 	"dependencies": {
 		"@rbxts/highlighter": "^0.8.2-ts.1",
 		"@rbxts/inspect": "^1.0.1",
-		"@rbxts/object-utils": "^1.0.4",
-		"@rbxts/pretty-react-hooks": "^0.2.1",
 		"@rbxts/t": "^3.1.0"
 	}
 }
