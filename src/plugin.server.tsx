@@ -1,8 +1,8 @@
 /// <reference types="@rbxts/types/plugin" />
 
+import React from "@rbxts/react"
 import { ReflexProvider } from "@rbxts/react-reflex"
 import { createRoot } from "@rbxts/react-roblox"
-import Roact from "@rbxts/roact"
 import { App } from "app"
 import { store } from "store"
 

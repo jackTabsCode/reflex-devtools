@@ -1,5 +1,5 @@
 import Highlighter from "@rbxts/highlighter"
-import Roact, { useEffect, useMemo } from "@rbxts/roact"
+import React, { useEffect, useMemo } from "@rbxts/react"
 import { useRootProducer, useRootSelector } from "store"
 import { ActionSelection } from "./actionSelection"
 import { ActionState } from "./actionState"
@@ -14,7 +14,7 @@ const ROW_HEIGHT = 30
 export function App() {
 	const store = useRootProducer()
 
-	const actions = useRootSelector((state) => state.game.actions)
+	const actions = useRootSelector((state) => state.host.actions)
 	const selectedIndex = useRootSelector((state) => state.widget.selectedIndex)
 	const autoSelectLatest = useRootSelector((state) => state.widget.autoSelectLatest)
 	const showArgs = useRootSelector((state) => state.widget.showArgs)
@@ -29,7 +29,7 @@ export function App() {
 	}, [selectedIndex, actions, autoSelectLatest])
 
 	const actionSelections = useMemo(() => {
-		const elements = new Map<number, Roact.Element>()
+		const elements = new Map<number, React.Element>()
 		for (const [index, action] of pairs(actions)) {
 			elements.set(index, <ActionSelection action={action} index={index} selected={index === selectedIndex} />)
 		}

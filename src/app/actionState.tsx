@@ -1,6 +1,6 @@
 import Highlighter from "@rbxts/highlighter"
 import inspect from "@rbxts/inspect"
-import Roact, { useBinding, useEffect, useRef } from "@rbxts/roact"
+import React, { useBinding, useEffect, useRef } from "@rbxts/react"
 
 interface Props {
 	state: object
