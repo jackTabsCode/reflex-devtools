@@ -12,15 +12,15 @@ export interface Action extends DispatchedAction {
 	timestamp: number
 }
 
-export interface Game {
+export interface Host {
 	actions: Action[]
 }
 
-const initialState: Game = {
+const initialState: Host = {
 	actions: [],
 }
 
-export const _game = createProducer(initialState, {
+export const host = createProducer(initialState, {
 	dispatched: (state, action: DispatchedAction, timestamp: number) => ({
 		...state,
 		actions: [...state.actions, { ...action, timestamp }],

@@ -2,14 +2,14 @@
 
 import { UseProducerHook, UseSelectorHook, useProducer, useSelector } from "@rbxts/react-reflex"
 import { CombineProducers, combineProducers } from "@rbxts/reflex"
-import { _game } from "./game"
+import { host } from "./host"
 import { widget } from "./widget"
 
-const slices = { widget, game: _game }
+const slices = { widget, host }
 
-export type Store = CombineProducers<typeof slices>
+export type Producer = CombineProducers<typeof slices>
 
-export const useRootProducer: UseProducerHook<Store> = useProducer
-export const useRootSelector: UseSelectorHook<Store> = useSelector
+export const useRootProducer: UseProducerHook<Producer> = useProducer
+export const useRootSelector: UseSelectorHook<Producer> = useSelector
 
 export const store = combineProducers(slices)

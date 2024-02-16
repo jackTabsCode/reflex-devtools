@@ -1,5 +1,5 @@
 import inspect from "@rbxts/inspect"
-import Roact, { memo, useMemo } from "@rbxts/roact"
+import React, { memo, useMemo } from "@rbxts/react"
 import { useRootProducer, useRootSelector } from "store"
 import { Action } from "store/game"
 
