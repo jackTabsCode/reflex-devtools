@@ -14,7 +14,7 @@ const ROW_HEIGHT = 30
 export function App() {
 	const store = useRootProducer()
 
-	const actions = useRootSelector((state) => state.game.actions)
+	const actions = useRootSelector((state) => state.host.actions)
 	const selectedIndex = useRootSelector((state) => state.widget.selectedIndex)
 	const autoSelectLatest = useRootSelector((state) => state.widget.autoSelectLatest)
 	const showArgs = useRootSelector((state) => state.widget.showArgs)
