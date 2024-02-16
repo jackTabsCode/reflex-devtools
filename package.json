@@ -19,6 +19,7 @@
 		"@rbxts/reflex": "^4.3.1",
 		"@rbxts/services": "^1.5.4",
 		"@rbxts/types": "^1.0.754",
+		"rbxts-transform-debug": "^2.2.0",
 		"roblox-ts": "^2.3.0-dev-4e19cec",
 		"typescript": "^5.3.3"
 	},
